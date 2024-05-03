@@ -1,5 +1,55 @@
 # luna-browser
 luna抗指纹浏览器|文档
+
+项目地址:https://github.com/musiclover789/luna
+
+**更新日志 - 2024年5月4日**
+
+**更新内容：**
+
+**1. 重新修改了canvas-bug-指纹大量重复bug**
+
+**1.1 增加了声卡指纹、webrtc公网ip设置、语音合成器设置；
+
+```
+请注意新的版本-抗指纹部分要用这个、这里以手机的指纹为例：
+
+
+Fingerprint: []string{
+			"--luna_user_agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36",
+			"--luna_header_1=User-Agent-lunareplace-Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36",
+			"--luna_userAgentData=Chromium:116-luna-Google Chrome:116-luna-Not-A.Brand:24-luna-platform:Android-luna-mobile:true-luna-platform_version:12.0.0-luna-ua_full_version:116.0.4515.186-luna-model:Samsung Galaxy-luna-architecture:arm64",
+			"--luna_languages=zh-CN",
+			/*****
+			luna_screen 这个的用法稍微有点改变，不过相信应该直接能看懂
+			****/
+			"--luna_screen=height:803,width:360,availHeight:803,availWidth:360,availLeft:0,availTop:0,colorDepth:24,pixelDepth:24",
+			"--luna_devicePixelRatio=3",             //屏幕缩放
+			/*****
+			luna_cavans_random_int_number 这个的用法改变，改成1-99999内的任意整数，步长根据自己的需求；
+			在100内随机；举个例子比如1、102、199、268，反正随机即可。
+			****/
+			"--luna_cavans_random_int_number=99981", //取值1-99999 步长100 内随机
+			"--luna_audio_random_int_number=9997",   //取值1-9999 声卡指纹
+			"--luna_platform=Linux armv81",
+			"--luna_maxTouchPoints=5", //手机触控点数量
+			//"--webrtc-ip-handling-policy=disable_non_proxied_udp",
+			"--luna_webrtc_public_ip=111.29.120.230", //公网ip 总之你希望出口的ip是什么就写什么，要保持一致就行。
+			/***
+			手机上要尽量不要用语音合成器、如果不用就注释掉即可。
+			*/
+			//"--luna_speechSynthesisVoice=name:clark<>lang:en-US<>voice_uri:mock.voice.clark<-luna->name:Google Deutsch<>lang:de-DE<>voice_uri:Google Deutsch",
+			/**
+			voice1->voice_uri = String("mock.voice.clark");
+			 voice1->name = String("clark");
+			 voice1->lang = String("en-US");
+			*/
+			/***
+			 */
+
+		}
+```
+
 **更新日志 - 2024年4月26日**
 
 **更新内容：**
