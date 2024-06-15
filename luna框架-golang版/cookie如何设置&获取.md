@@ -3,16 +3,16 @@
 代码示例:
 
 ```
-_, p1 := browserObj.OpenPageAndListen("https://www.baidu.com/", func(devToolsConn *protocol.DevToolsConn) {
-		network.SetCookieByURL(devToolsConn, "luna_url", "luna-cookie", "https://www.baidu.com")
-    network.SetCookie(devToolsConn, "luna_domain", "luna-cookie", "www.baidu.com")
-    //network.ClearBrowserCookies(devToolsConn)
+_, p1 := browserObj.OpenPageAndListen("https://www.baidu.com/", func(Session *protocol.Session) {
+		network.SetCookieByURL(Session, "luna_url", "luna-cookie", "https://www.baidu.com")
+    network.SetCookie(Session, "luna_domain", "luna-cookie", "www.baidu.com")
+    //network.ClearBrowserCookies(Session)
 })
 
-network.SetCookie(p1.DevToolsConn, "luna_domain_abc", "luna-cookie", "www.baidu.com")
+network.SetCookie(p1.Session, "luna_domain_abc", "luna-cookie", "www.baidu.com")
 
 urls := []string{"https://www.baidu.com"}
-cookies, _ := network.GetCookies(p1.DevToolsConn, urls)
+cookies, _ := network.GetCookies(p1.Session, urls)
 
 for _, result := range gjson.Parse(luna_utils.FormatJSONAsString(cookies)).Get("result.cookies").Array() {
     fmt.Println(result.Get("name").String(), result.Get("value").String(), result.Get("domain").String())
@@ -24,7 +24,7 @@ for _, result := range gjson.Parse(luna_utils.FormatJSONAsString(cookies)).Get("
 
 
 ```
-conn *protocol.DevToolsConn, key, value, domain string
+Session *protocol.Session, key, value, domain string
 ```
 
 - 静态函数
@@ -38,7 +38,7 @@ conn *protocol.DevToolsConn, key, value, domain string
 
 
 ```
-SetCookieByURL(conn *protocol.DevToolsConn, key, value, url string) 
+SetCookieByURL(Session *protocol.Session, key, value, url string) 
 ```
 
 - 静态函数
@@ -52,7 +52,7 @@ SetCookieByURL(conn *protocol.DevToolsConn, key, value, url string)
 
 
 ```
-ClearBrowserCookies(conn *protocol.DevToolsConn)
+ClearBrowserCookies(Session *protocol.Session)
 ```
 
 - 静态函数
@@ -64,7 +64,7 @@ ClearBrowserCookies(conn *protocol.DevToolsConn)
 
 
 ```
-GetCookies(conn *protocol.DevToolsConn, urls []string) (map[string]interface{}, error)
+GetCookies(Session *protocol.Session, urls []string) (map[string]interface{}, error)
 ```
 
 - 静态函数
