@@ -37,15 +37,24 @@ RunJSSync
 B:代码示例:
 
 ```
-_, pageObj := browserObj.OpenPageAndListen("https://capcut.com/login", func(devToolsConn *protocol.DevToolsConn) {
+_, pageObj := browserObj.OpenPageAndListen("https://capcut.com/login", func(Session *protocol.Session) {
     //第一种
-		runtime.Evaluate(devToolsConn, "your js")
-		runtime.EvaluateWithResultSync(devToolsConn, "your js", time.Minute)
+		runtime.Evaluate(Session, "your js")
+		runtime.EvaluateWithResultSync(Session, "your js", time.Minute)
 	})
 	//第二种
-	runtime.Evaluate(pageObj.DevToolsConn, "your js")
-	runtime.EvaluateWithResultSync(pageObj.DevToolsConn, "your js", time.Minute)
-	
+	runtime.Evaluate(pageObj.Session, "your js")
+	runtime.EvaluateWithResultSync(pageObj.Session, "your js", time.Minute)
+	//你也可以在任何地方这么写
+	        pagePro.RunJS("location.reload()")
+		for i := 0; i < 10; i++ {
+			time.Sleep(time.Second)
+			err, result := pagePro.RunJSSync("your js", time.Minute)
+			if err == nil {
+				fmt.Println(result, err)
+				break
+			}
+		}
 	
 ```
 
@@ -53,6 +62,6 @@ _, pageObj := browserObj.OpenPageAndListen("https://capcut.com/login", func(devT
 
 - 区别是，此用法可以不依托page对象
 
-- 但是依托devToolsConn，任何page、或者browserObj对象都有devToolsConn属性
+- 但是依托devToolsConn，任何page、或者browserObj对象都有Session属性
 
   
