@@ -32,7 +32,7 @@ err,pageobj:=browserObj.OpenPage("https://www.baidu.com")
 你也可以这样创建
 
 ```
-	err, pageobj := browserObj.OpenPageAndListen("https://www.baidu.com", func(devToolsConn *protocol.DevToolsConn) {
+	err, pageobj := browserObj.OpenPageAndListen("https://www.baidu.com", func(session *protocol.Session) {
 
 	})
 ```
@@ -70,37 +70,48 @@ OpenPageAndListen：
 举个完整的例子、来判断页面是否打开完成
 
 ```
-	err, itemPage := browserObj.OpenPageAndListen("https://www.baidu.com", func(devToolsConn *protocol.DevToolsConn) {
-		//打开页面监听
-		page.PageEnable(devToolsConn)
-		//判断页面是否加载完成
-		devToolsConn.SubscribeOneTimeEvent("Page.loadEventFired", func(param interface{}) {
-			runtime.Evaluate(devToolsConn, script.ShowMousePosition())
+                var wg sync.WaitGroup
+		wg.Add(1)
+		err, pagePro := browserObj.OpenPageAndListen("https://www.baidu.com", func(Session *protocol.Session) {
+			page.PageEnable(Session)
+			Session.SubscribeOneTimeEvent("Page.loadEventFired", func(param interface{}) {
+				fmt.Println("Waiting for the page to fully load")
+				wg.Done()
+			})
 		})
-		//页面是否已经完整打开
-		devToolsConn.SubscribeOneTimeEvent("Page.windowOpen", func(param interface{}) {
-			runtime.Evaluate(devToolsConn, script.ShowMousePosition())
-		})
-	})
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
+		wg.Wait()
 ```
 
+你也可以在任何你逻辑需要的地方这么写
 
-
-
+```
+               var wg1 sync.WaitGroup
+		wg1.Add(1)
+                //打开页面监听
+		page.PageEnable(pagePro.Session)
+		pagePro.Session.SubscribeOneTimeEvent("Page.loadEventFired", func(param interface{}) {
+			fmt.Println("Waiting for the page to fully load")
+			wg1.Done()
+		})
+		wg1.Wait()
+```
 
 举个完整的例子、来说明如何拦截数据包
 
 
 
 ```
-err, p1 := browserObj.OpenPageAndListen("https://www.baidu.com/", func(devToolsConn *protocol.DevToolsConn) {
-   //打开网络监听
-   network.EnableNetwork(devToolsConn)
-//不间断的获取页面请求数据包、包含request、response所有信息，而且是请求与返回相对应的数据   
-network.RequestResponseAsync(devToolsConn, func(requestId string, request, response map[string]interface{}) {          
-//打印出来看一下         fmt.Println(luna_utils.FormatJSONAsString(request),luna_utils.FormatJSONAsString(request))
-            //network.GetResponseBody(devToolsConn,requestId,time.Minute)
-    })
+err, p1 = browserObj.OpenPageAndListen("https://www.baidu.com/", func(session *protocol.Session) {
+network.EnableNetwork(session)
+network.RequestResponseAsync(session, func(requestId string, request, response map[string]interface{}) {
+ fmt.Println(luna_utils.FormatJSONAsString(request),luna_utils.FormatJSONAsString(response))
+    //平时用不上,并不是每个请求都有请求报体；需要根据请求的url自行判断是否需要使用
+    //network.GetResponseBody(session, requestId, time.Minute)
+  })
 })
 ```
 
