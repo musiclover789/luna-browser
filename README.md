@@ -1,10 +1,19 @@
-具体文档看上面  ↑ 指纹部分以项目表格表格为最终参考
+# 具体文档看上面  ↑ 指纹部分以项目表格表格为最终参考
 
 # luna-browser
 luna抗指纹浏览器|文档
 
 项目地址:https://github.com/musiclover789/luna
 
+**更新日志 - 2024年7月12日**
+
+**更新内容：**
+
+**1. 修复webgpu相关指纹项**
+
+**1.1 修复内核子数据包 meta header 问题；
+
+**1.2 修复headless模式下、useragent 头问题
 
 
 
