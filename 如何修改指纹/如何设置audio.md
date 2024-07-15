@@ -13,7 +13,7 @@
 - 步长1左右即可
 
 ```
---luna_audio_random_int_number=99981
+--luna_audio_random_int_number=981
 ```
 
 
