@@ -42,7 +42,7 @@ const fs = require('fs');
   //如果你是多线程情况使用，请自己写好--user-data-dir=  也就是你要区分自己的用户缓存路径，否则你的指纹会造成混乱。或者程序崩溃等未知问题。
   //也就是说不同的线程，不同的实例，要采用不同的缓存目录，而不是同一个。
   const browser = await puppeteer.launch({
-    //luna 浏览器的路径-这里一定要是luna浏览器的路径，而不是其他浏览器，否则你的指纹无效，另外你的指纹如果未经授权，也是无效
+    //luna 浏览器的路径-这里一定要是luna浏览器的路径，而不是其他浏览器
     executablePath:'C:\\workspace\\chrome\\chrome\\src\\out\\Default\\chrome.exe',
     headless:false,
     args: ['--remote-debugging-port='+free_port] // 指定远程调试端口号
