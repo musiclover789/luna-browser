@@ -5,6 +5,8 @@ luna抗指纹浏览器|文档
 
 项目地址:https://github.com/musiclover789/luna
 
+qq群 179991677
+
 
 **更新日志 - 2024年8月28日**
 
