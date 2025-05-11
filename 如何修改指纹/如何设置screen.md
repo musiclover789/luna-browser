@@ -42,43 +42,35 @@ console.log("像素比例: " + window.devicePixelRatio);
 
 
 - ##### 2025年5月11日版本更新了如下内容；
-- 对应js是:
+- 对应js的检测点是:
   ```
-  1. `--luna_deviceWidth=360`
-   - &zwnj;**对应 JS**&zwnj;: `window.matchMedia('(device-width: 360px)').matches`
+  1. --luna_deviceWidth=360
+  对应js: window.matchMedia('(device-width: 360px)').matches
 
 
-2. `--luna_deviceHeight=803`
-   - &zwnj;**对应 JS**&zwnj;: `window.matchMedia('(device-height: 803px)').matches`
+2. --luna_deviceHeight=803
+    对应js: window.matchMedia('(device-height: 803px)').matches
 
 
-3. `--luna_visualViewportWidth=360`
-   - &zwnj;**对应 JS**&zwnj;: `window.visualViewport?.width`（现代浏览器）
-   - &zwnj;**含义**&zwnj;: 用户可见区域的布局宽度（可能受缩放影响）。
+3. --luna_visualViewportWidth=360
+   对应js: window.visualViewport?.width（现代浏览器）
 
-4. `--luna_visualViewportHeight=803`
-   - &zwnj;**对应 JS**&zwnj;: `window.visualViewport?.height`（现代浏览器）
-   - &zwnj;**含义**&zwnj;: 用户可见区域的布局高度（可能受缩放影响）。
+4. --luna_visualViewportHeight=803
+   对应js: window.visualViewport?.height（现代浏览器）
 
-5. `--luna_outerWidth=360`
-   - &zwnj;**对应 JS**&zwnj;: `window.outerWidth`
-   - &zwnj;**含义**&zwnj;: 浏览器窗口外部宽度（包含工具栏、边框等）。
+5. --luna_outerWidth=360
+   对应js: window.outerWidth
 
 6. `--luna_outerHeight=803`
-   - &zwnj;**对应 JS**&zwnj;: `window.outerHeight`
-   - &zwnj;**含义**&zwnj;: 浏览器窗口外部高度（包含工具栏、边框等）。
+   对应js: window.outerHeight
 
 7. `--luna_innerWidth=360`
-   - &zwnj;**对应 JS**&zwnj;: `window.innerWidth`
-   - &zwnj;**含义**&zwnj;: 浏览器窗口内容区域的宽度（包含滚动条）。
+   对应js: window.innerWidth
 
-8. `--luna_innerHeight=803`
-   - &zwnj;**对应 JS**&zwnj;: `window.innerHeight`
-   - &zwnj;**含义**&zwnj;: 浏览器窗口内容区域的高度（包含滚动条）。
+8. --luna_innerHeight=803
+   对应js: window.innerHeight
 
-
-  
-  ```
+```
 - 
 ```
 	arr = append(arr, "--touch-events")
