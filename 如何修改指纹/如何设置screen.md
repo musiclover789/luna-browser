@@ -43,14 +43,12 @@ console.log("像素比例: " + window.devicePixelRatio);
 
 - ##### 2025年5月11日版本更新了如下内容；
 - 对应js的检测点是:
-  ```
-  1. --luna_deviceWidth=360
+```
+1. --luna_deviceWidth=360
   对应js: window.matchMedia('(device-width: 360px)').matches
-
 
 2. --luna_deviceHeight=803
     对应js: window.matchMedia('(device-height: 803px)').matches
-
 
 3. --luna_visualViewportWidth=360
    对应js: window.visualViewport?.width（现代浏览器）
@@ -71,7 +69,8 @@ console.log("像素比例: " + window.devicePixelRatio);
    对应js: window.innerHeight
 
 ```
-- 
+对应应该如下设置：
+
 ```
 	arr = append(arr, "--touch-events")
 	arr = append(arr, "--luna_screen=height:803,width:360,availHeight:803,availWidth:360,availLeft:0,availTop:0,colorDepth:24,pixelDepth:24")
