@@ -6,7 +6,23 @@ luna抗指纹浏览器|文档
 项目地址:https://github.com/musiclover789/luna
 
 qq群 179991677
+**更新日志 - 2025年5月11日**
 
+**更新内容：**
+
+**
+	更新了	
+ 	arr = append(arr, "--luna_deviceWidth=360")
+	arr = append(arr, "--luna_deviceHeight=803")
+
+	arr = append(arr, "--luna_visualViewportWidth=360")
+	arr = append(arr, "--luna_visualViewportHeight=803")
+
+	arr = append(arr, "--luna_outerWidth=360")
+	arr = append(arr, "--luna_outerHeight=803")
+	arr = append(arr, "--luna_innerWidth=360")
+	arr = append(arr, "--luna_innerHeight=803")
+ **
 
 **更新日志 - 2024年8月28日**
 
