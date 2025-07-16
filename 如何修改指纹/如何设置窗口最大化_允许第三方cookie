@@ -3,3 +3,6 @@ Fingerprint: []string{"--start-maximized"},
 
 具体设置窗口大小，非常细节的可以参考这个文档
 如何设置screen.md
+
+允许第三方cookie
+Fingerprint: []string{"--disable-features=TrackingProtection3pcd"},
